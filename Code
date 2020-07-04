@@ -1,0 +1,39 @@
+/*Arduino code to control LED using Push buttons.
+The code is used in the 17th video from Youtube channel Bong TechSolutions.
+Link: https://youtu.be/f86MQQ_JtIg
+Author- Souparna Chowdhury*/
+
+#define up 2  
+#define down 4   //Two pins 2,4 for Pushbuttons
+#define led1 5
+#define led2 6   //Two pins 5,6 for LEDs
+
+int val1=0,val2=0;  //Two integer values taken to take the Push button input
+
+void setup() {
+  pinMode(up,INPUT);
+  pinMode(down,INPUT);
+  pinMode(led1,OUTPUT);
+  pinMode(led2,OUTPUT);    //Pins are configured as Input & Output.
+}
+
+void loop() {
+  val1=digitalRead(2);
+  val2=digitalRead(4);         //Push buttons at pin 2,4 are read and stored in the variables val1 and val2
+  
+  if((val1 == HIGH)&&(val2 == LOW)){    //If switch at 2 is pressed
+    digitalWrite(led1, LOW);
+    digitalWrite(led2,HIGH);
+    delay(50);
+  }
+  else if((val2 == HIGH)&&(val1 == LOW)){    //If switch at 4 is pressed
+    digitalWrite(led1, HIGH);
+    digitalWrite(led2,LOW);
+    delay(50);
+  }
+  else{
+    digitalWrite(led1, LOW);               //If two switches are un pressed or pressed simultanously 
+    digitalWrite(led2,LOW);
+    delay(50);
+  }
+}
